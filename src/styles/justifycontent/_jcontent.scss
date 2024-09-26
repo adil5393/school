@@ -1,0 +1,7 @@
+$justify-content :flex-start,flex-end,center,space-around,space-between;
+
+@each $i in $justify-content{
+    .jc-#{$i}{
+        justify-content: $i;
+    }
+}

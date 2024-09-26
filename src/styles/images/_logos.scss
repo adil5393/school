@@ -1,0 +1,48 @@
+$baselogoheight:190px;
+$baselogowidth:190px;
+
+.logo{
+    border:0;
+    
+    
+    @include xs{
+        max-width: $baselogowidth;
+        max-height: $baselogoheight;
+    }
+    @include sm{
+        max-width: $baselogowidth*1.5;
+        max-height: $baselogoheight*1.5;
+    }
+    @include md{
+        max-width: $baselogowidth*1.75;
+        max-height: $baselogoheight*1.75;
+    }
+    @include lg{
+        max-width: $baselogowidth*1.85;
+        max-height: $baselogoheight*1.75;
+    }
+    @include xl{
+        max-width: $baselogowidth*1.85;
+        max-height: $baselogoheight*1.75;
+        
+    }
+    @include xxl{
+        max-width: $baselogowidth*2;
+        max-height: $baselogoheight*1.75;
+        
+    }
+}
+.footer {
+    img{
+        @include xs{
+            height: 30px;
+            width: 30px;
+        }
+        @include sm{
+            height: 40px;
+            width: 40px;
+        }
+    }
+}
+
+

@@ -1,0 +1,147 @@
+
+@use 'sass:math';
+$container-width:1400px;
+.container{
+    width:100%;
+    max-width: $container-width;
+    padding: $base-padding;
+    margin: $base-margin auto;
+    box-sizing: border-box;
+    
+}
+
+.row{
+    display: flex;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    width: 100%;
+    
+}
+@mixin baseboxshadow{
+        box-shadow: $base-shadow;
+        box-sizing: border-box;
+        border-radius: $base-radius;
+}
+
+
+
+
+@include xs{
+    @for $i from 1 through 12{
+        .col-xs-#{$i}{
+            
+            width: math.div($i*100%,12);
+            display:flex;  
+            box-sizing: border-box;
+            .logo-area{
+                width:100%;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+    .menu-container2.open{
+        display: flex;
+        max-height:100px;
+        opacity: 1;
+    }
+    .menu-container2{
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 1s ease, opacity 0.5s ease;
+    }
+    .menu-container1{
+        display:none;
+    }
+}
+
+@include sm{
+    @for $i from 1 through 12{
+        .col-sm-#{$i}{
+            width: math.div($i*100%,12);
+            display:flex;  
+            box-sizing: border-box;
+
+            .logo-area{
+                width:100%;
+                display: flex;
+                justify-content: center;  
+                  
+            }
+
+        }
+    }
+    .hamburger{
+        display: none;
+    }
+    .menu-container2.open{
+        display: none;
+    }
+    .menu-container2 {
+        display: none;
+    }
+    .menu-container1{
+        display: flex;
+    }
+    
+}
+@include md{
+    @for $i from 1 through 12{
+        .col-md-#{$i}{
+            width: math.div($i*100%,12);
+            display:flex;  
+            .heading{
+                align-items: flex-end;
+            } 
+            .logo-area{
+                width:100%;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+@include lg{
+    @for $i from 1 through 12{
+        .col-lg-#{$i}{
+            width: math.div($i*100%,12);
+            display:flex;  
+            
+            .logo-area{
+                width:100%;
+                display: flex;
+                justify-content: center;
+            }
+            
+        }
+    }
+}
+@include xl{
+    @for $i from 1 through 12{
+        .col-xl-#{$i}{
+            width: math.div($i*100%,12);
+            display:flex;  
+            
+            .logo-area{
+                width:100%;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+@include xxl{
+    @for $i from 1 through 12{
+        .col-xxl-#{$i}{
+            width: math.div($i*100%,12);
+            display:flex;  
+            
+            .logo-area{
+                width:100%;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

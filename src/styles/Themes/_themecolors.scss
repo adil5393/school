@@ -1,0 +1,22 @@
+@each $k,$v in $colors{
+    $ccolor: map-get($complement-color,$k);
+    @for $i from 1 through 10{
+        .dbg-#{$k}-#{$i}{
+            color:mix($v,white,$i*10%);
+            background-color: mix((map-get($complement-color,$k)),black,$i*10%);
+        }
+        .lbg-#{$k}-#{$i}{
+            background-color:mix($v,white,$i*10%);
+            color: mix((map-get($complement-color,$k)),black,$i*10%);
+        }
+    }
+}
+
+@each $k,$v in $base-colors{
+    .cl-#{$k}{
+        color:$v;
+    }
+    .bgcl-#{$k}{
+        background-color: $v;
+    }
+}

@@ -1,0 +1,80 @@
+@mixin base-btn{
+    @include base-box;
+    height: 25px;
+    width: auto;
+    padding:5px 5px;
+    margin: 2px;
+    border:0;
+    cursor: pointer;
+    text-align: center;
+    background-color:black;
+    color: white;
+    font-weight: bold; 
+}
+
+.nav-btn{
+    @include base-btn;
+    
+}
+.menu-btn{
+    @include base-btn;
+ }
+ .applynow{
+   @include base-btn;
+   width:100px;
+ }
+ .messageusonwhatsapp {
+   @include base-btn; // Use the base button styling
+   display: flex;     // Align the image and text horizontally
+   align-items: center; // Vertically align the image and text
+   gap: 5px;         // Add space between the image and text
+   padding: 20px;    // Adjust padding to suit content
+   
+   img {
+      width: 20px; // Set the size for the WhatsApp icon
+      height: auto;
+    }
+  }
+ 
+ li{
+    list-style: none;
+ }
+
+ .hamburger{
+    border: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center; /* Center image horizontally */
+    align-items: center;    /* Center image vertically */
+    overflow: hidden; 
+    box-shadow: 1px 4px 9px;
+    cursor:pointer;
+    margin-bottom: 5px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+ }
+ .hamburger:hover{
+    scale: 1.1;
+ }
+ .hamburger:active {
+   transform: scale(0.9);  // Add a press-down effect on click
+   -webkit-tap-highlight-color: transparent;
+}
+ .menu-icon{
+    border-radius: 10px;
+    height: 30px; /* Adjust as needed */
+    width: 30px;  /* Adjust as needed */
+    object-fit: contain;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+ }
+ .menu-icon:focus{
+   outline:none;
+   -webkit-tap-highlight-color: transparent;
+ }
+ .hamburger:focus{
+   outline:none;
+   -webkit-tap-highlight-color: transparent;
+ }

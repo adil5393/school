@@ -1,0 +1,10 @@
+@mixin basenav{
+    width:100%;
+    box-sizing: border-box;
+    border-radius: $base-radius;
+    
+    
+}
+.nav{
+    @include basenav;
+}

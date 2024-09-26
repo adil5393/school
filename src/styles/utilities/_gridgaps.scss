@@ -1,0 +1,42 @@
+$gaps:(
+    "0":0,
+    "1":5px,
+    "2":10px,
+    "3":15px,
+    "4":20px,
+    "5":25px
+);
+
+@each $k,$v in $gaps{
+    .pr-#{$k}>*{
+        padding-right: $v;
+    }
+    .pr-#{$k}{
+        margin-right: -$v;
+    }
+    .pl-#{$k}>*{
+        padding-left: $v;
+    }
+    .pl-#{$k}{
+        margin-left: -$v;
+    }
+    .mr-#{$k}>*{
+        margin-right: $v;
+    }
+    .ml-#{$k}>*{
+        margin-left: $v;
+    }
+    .pt-#{$k}>*{
+        padding-top: $v;
+    }
+    .pb-#{$k}>*{
+        padding-bottom: $v;
+    }
+    .mt-#{$k}>*{
+        margin-top: $v;
+    }
+    .mb-#{$k}>*{
+        margin-bottom: $v;
+    }
+
+}

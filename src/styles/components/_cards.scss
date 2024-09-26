@@ -1,0 +1,85 @@
+.card{
+    
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    
+    margin:auto;
+    @include base-box;
+    .card-title{
+        font-weight: 900;
+        font-family:'Courier New', Courier, monospace;
+        text-decoration: underline;
+        text-align: center;
+        @include xs{
+            font-size: 15;
+        }
+        @include sm{
+            font-size:30px
+        }
+    }
+    
+    .socials{
+        display:flex;
+        img{
+            @include xs{
+                height:30px;
+                width: 30px;
+            }
+            @include sm{
+                height: 50px;
+                width: 50px;
+            }
+        }
+        a{
+            padding: 10px;
+        }
+    }
+    
+    
+    p{
+
+        font-family: 'Courier New', Courier, monospace;
+        text-decoration: underline;
+        text-align: center;
+        @include xs{
+            font-weight: lighter;
+            
+        }
+        @include sm{
+            font-weight: bolder;
+        }
+    }
+    .imagearea {
+        width: 100%; // Make the container fill the card's width
+         // Allow it to take the available height in the card
+        display: flex;
+        justify-content: center; // Center image horizontally
+        align-items: center; // Center image vertically
+    }
+    .imgtoppers {
+        width: 95%; // Make the image fill the width of the container
+        height: 95%; // Make the image fill the height
+        object-fit: cover;
+        border-radius: 10px;
+         // Cover the container while maintaining aspect rat
+         
+    }
+    .photo{
+        width: 100%; // Make the container fill the card's width
+        height: 100%; // Allow it to take the available height in the card
+        display: flex;
+        justify-content: center; // Center image horizontally
+        align-items: center;
+        border-radius: 10px;
+    }
+    .imagearea.slide{
+        @include xs{
+            height:300px
+        }
+        @include sm{
+            height:500px
+        }
+    }
+}
+

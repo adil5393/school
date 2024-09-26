@@ -1,0 +1,26 @@
+$colors:(
+    "brown":brown,
+    "charcoal":rgb(54, 50, 50),
+    "teal":teal,
+    "olive":olive,
+    "mauve":rgb(168, 125, 132),
+    "burgandy":rgb(94, 38, 38),
+    "purple":purple,
+    "navy":navy
+);
+
+$complement-color:(
+    "brown":rgb(38, 38, 143),
+    "charcoal":rgb(82, 185, 185),
+    "teal":rgb(255, 145, 0),
+    "olive":rgb(192, 192, 50),
+    "mauve": rgb(135, 209, 145),
+    "burgandy": teal,
+    "purple": rgb(20, 66, 20),
+    "navy": navy
+);
+$base-colors:(
+    "primary":blue,
+    "info":rgba(255, 255, 0, 0.548),
+    "danger":rgb(105, 34, 34),
+)

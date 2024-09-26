@@ -1,0 +1,23 @@
+@import 'base';
+@import 'breakpoints';
+@import 'fonts';
+@import 'components/navbar';
+@import 'components/buttons';
+@import 'layouts/grid';
+
+@import 'utilities/gridgaps';
+
+@import 'colors';
+@import 'Themes/themecolors';
+@import 'justifycontent/jcontent';
+@import 'components/cards';
+@import 'images/logos';
+@import 'video/video';
+@import 'components/footer';
+
+
+
+* {
+    margin:0;
+    padding:0;
+}

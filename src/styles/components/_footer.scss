@@ -1,0 +1,18 @@
+.footer .card p{
+    text-decoration: none;
+    @include xs{
+        font-size: 10px;
+    }
+    @include sm{
+        font-size: 15px;
+    }
+}
+
+.footer .copyright p{
+    @include xs{
+        font-size: 8px;
+    }
+    @include sm{
+        font-size: 10px;
+    }
+}

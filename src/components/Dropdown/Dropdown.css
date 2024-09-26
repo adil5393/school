@@ -1,0 +1,46 @@
+/* Dropdown.css */
+.dropdown {
+  margin-top: 30px;
+  position: absolute;
+  display: inline-block;
+  width: auto;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-toggle .arrow {
+  margin-left: 10px;
+}
+
+.dropdown-toggle .up {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  background-color: pink;
+  position: relative;
+  width: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdownitem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownitem:hover, .dropdownitem.selected {
+  background-color: #f0f0f0;
+}
