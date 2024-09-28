@@ -1,26 +1,28 @@
 import Dropdown from "../Dropdown/Dropdown";
-import {useState} from 'react';
-import Feestructure from "../feestructure/Feestructure";
+import {useState,createContext, useContext} from 'react';
+import {BookList2024_25,HouseSystem,Infrastructure,MailingList,PublicDisclosure,TestSchedule,Uniform} from './Links/Information';
+import {ApplyOnline,FeeStructure,Procedure} from './Links/Admissions';
+import {MediaAndNews,RecentActivities,Videos} from './Links/Gallery'
+import { MyContext, MyProvider } from "../context/MyContext";
+import HomeSection from "../sections/Homesection";
 
 function Navbar (){
-    const [mainSection, setMainsection] = useState(null);
-    
+    const {setMainSection, newValue} = useContext(MyContext);
     const [isOpen, setIsOpen] = useState(false);
     const [menu,setMenu] = useState([
         {text:"Information",
-        options: ["Infrastructure","House System","Uniform","Test-Schedule","Public-Disclosure","Mailing-List","Book-List-2024-25"],
+            options: ["Infrastructure", "HouseSystem", "Uniform", "TestSchedule", "PublicDisclosure", "MailingList", "BookList2024_25"],
         state : false,
-        comps:[<Feestructure/>]
         },
         {text:"Gallery",
-        options: ["Recent Activities","Videos","Media and News"],
+            options: ["RecentActivities", "Videos", "MediaAndNews"],
         state:false,
-        comps:[<Feestructure/>]
+        
         },
         {text:"Admissions",
-        options: ["Fee-Structure","Procedure","Apply-Online"],
+            options: ["FeeStructure", "Procedure", "ApplyOnline"],
         state:false,
-        comps:[<Feestructure/>]
+        
         }
     ]);
     const[activeIndex,setActiveIndex]=useState(null);
@@ -54,7 +56,7 @@ function Navbar (){
                 <div className="col">
                     <div className="row jc-space-between">
                         <div className="col">
-                            <Home />
+                            <Home newValue={newValue}/>
                         </div>
                         <div className="col">
                             <div className="hamburger">
@@ -70,7 +72,7 @@ function Navbar (){
                     </div>
                 </div>
                 <div className={`col-xs-12 menu-container2 ${isOpen?'open':''}`}>                    
-                        <Menu menu={menu} data={data} activeIndex={activeIndex} handleClick={handleClick}/>
+                        <Menu menu={menu} data={data} activeIndex={activeIndex} handleClick={handleClick} />
                 </div>
             </div>
         </div>
@@ -78,9 +80,9 @@ function Navbar (){
 }
 
 
-function Home(){
+function Home({newValue}){
     return(
-        <button className="nav-btn">
+        <button className="nav-btn" onClick={()=>newValue(<HomeSection/>)}>
             Home
         </button>
     )
@@ -94,13 +96,29 @@ function Contact(){
 }
 
 function Menu({menu,data,activeIndex,handleClick}){   
+    
+    const components = {
+        Infrastructure:<Infrastructure/>,
+        HouseSystem: <HouseSystem />,
+        Uniform: <Uniform />,
+        TestSchedule: <TestSchedule />,
+        PublicDisclosure: <PublicDisclosure />,
+        MailingList: <MailingList />,
+        BookList2024_25: <BookList2024_25 />,
+        RecentActivities: <RecentActivities />,
+        Videos: <Videos />,
+        MediaAndNews: <MediaAndNews />,
+        FeeStructure: <FeeStructure />,
+        Procedure: <Procedure />,
+        ApplyOnline: <ApplyOnline />,
+      }
     const menuItems = menu.map((items,index)=>(
         <div className="col-sm-4 col-xs-4 jc-center" style={{paddingLeft:"10px",paddingRight:"10px",boxSizing:"border-box"}}>
             <button className="menu-btn" onClick={(e)=>handleClick(index)}>
                 {items.text}
             </button>
             {(activeIndex===index) &&(
-                <Dropdown menu={items.options} reset={data[1].fn} handleClick={handleClick}/>
+                <Dropdown menu={items.options} reset={data[1].fn} handleClick={handleClick} components={components}/>
             )}
         </div>
     ))

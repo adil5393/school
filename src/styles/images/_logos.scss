@@ -3,7 +3,7 @@ $baselogowidth:190px;
 
 .logo{
     border:0;
-    
+    cursor: pointer;
     
     @include xs{
         max-width: $baselogowidth;

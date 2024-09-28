@@ -11,10 +11,11 @@
     color: white;
     font-weight: bold; 
 }
-
+.submit-btn{
+   @include base-btn;
+}
 .nav-btn{
     @include base-btn;
-    
 }
 .menu-btn{
     @include base-btn;

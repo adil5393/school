@@ -37,6 +37,7 @@ $container-width:1400px;
                 width:100%;
                 display: flex;
                 justify-content: center;
+                
             }
         }
     }
@@ -67,7 +68,7 @@ $container-width:1400px;
                 width:100%;
                 display: flex;
                 justify-content: center;  
-                  
+                
             }
 
         }
@@ -143,5 +144,58 @@ $container-width:1400px;
                 justify-content: center;
             }
         }
+    }
+}
+form{
+    .card{
+        flex-direction: row;
+        
+        @include xs{
+            width: 100%;
+            
+        }
+        @include sm{
+            width: 90%;
+        }
+        @include md{
+            width: 80%;
+        }
+    }
+    input {
+        width: 100%;
+        height: 80%;
+        border: 1px solid lightgray; /* Light border */
+        color: #333; /* Darker text color */
+        padding: 8px; /* Optional: Adds some padding */
+        box-sizing: border-box; /* Ensures padding doesn't affect width */
+        border-radius: 4px; /* Optional: Rounded corners */
+    }
+    
+    input:focus {
+        border-color: #204063; /* Change border color on focus, optional */
+        outline: none; /* Remove default outline */
+    }
+    textarea{
+        width: 100%;
+        @include xs{
+            height: 50px;
+        }
+        @include sm{
+            height:100px
+        }
+    }
+    label{
+        
+    }
+}
+.form.card{
+    font-family: Verdana;
+    width: 100%;
+    
+    @include xs{
+        height: 60px;
+    }
+    @include sm{
+        height: 80px;
     }
 }

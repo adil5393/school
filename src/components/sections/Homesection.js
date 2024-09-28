@@ -1,6 +1,6 @@
 import React from 'react';
 import Photogallery from '../photogallery/Photogallery';
-import Dropdown from '../Dropdown/Dropdown';
+
 import youtube from '../../images/socials/youtube.png';
 import instagram from '../../images/socials/instagram.png';
 import facebook from '../../images/socials/facebook.png';

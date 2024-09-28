@@ -1,29 +1,38 @@
 import './Dropdown.css';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, createContext, useContext } from 'react';
+import { MyContext } from '../context/MyContext';
 
-export default function Dropdown({menu,handleClick}){
+export default function Dropdown({menu,handleClick,components}){
+    
+    const {mainSection, newValue} = useContext(MyContext)
     const dropdownRef = useRef(null);
-
-    function itemClicked(){
-        const defaultMenu = menu.map((item,index)=>({
-            ...item,state:false
+    
+    function itemClicked(item){
+        newValue(components[item]) 
+        
+        const defaultMenu = menu.map((items,index)=>({
+            ...items,state:false
         }))
         handleClick(null);
     }
+
     function handleClickOutside(e){
+        console.log("clicked outside")
         if(dropdownRef.current && !dropdownRef.current.contains(e.target)){
-            itemClicked();
+            handleClick(null);
         }
     }
-    useEffect(()=>{
+    /*useEffect(()=>{
         document.addEventListener('mousedown',handleClickOutside);
         return ()=>{
             document.removeEventListener('mousedown',handleClickOutside);
         }
-    })
+    },[]);*/
 
     const dropdownItems = menu.map((item,index)=>{
-        return <div className="dropdownitem" onClick={itemClicked}>
+        return <div key={index} className="dropdownitem" onClick={(e)=>
+        {e.stopPropagation();
+        itemClicked(item)}}>
                     {item}
                 </div>
     })
