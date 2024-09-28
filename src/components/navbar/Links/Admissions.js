@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const ApplyOnline = () => { console.log("Version 1") };
+export const ApplyOnline = () => { console.log("Version 2") };
 export const FeeStructure = () => { 
     const [formData, setFormData] = useState({
         name: { value: '', text: 'Name' },
