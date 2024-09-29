@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const ApplyOnline = () => { /* component code */ };
+export const ApplyOnline = () => { return <div>Aply Online</div> };
 export const FeeStructure = () => { 
     const [formData, setFormData] = useState({
         name: { value: '', text: 'Name' },
@@ -26,7 +26,11 @@ export const FeeStructure = () => {
     })
     function handleSubmit(e){
         e.preventDefault();
-        console.log(formData)
+        fetch('http://localhost:8383/submit-form',{
+            method:'POST',
+            body: JSON.stringify(formData)
+        })
+        //console.log(formData)
         const resetFormData = Object.fromEntries(
             Object.keys(formData).map((key) => [
                 key, 
@@ -60,4 +64,4 @@ export const FeeStructure = () => {
         </form>
     )
 };
-export const Procedure = () => { /* component code */ };
+export const Procedure = () => {  return <div>Procedure</div>};

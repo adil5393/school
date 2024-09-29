@@ -3,6 +3,7 @@ import {useState,createContext, useContext} from 'react';
 import {BookList2024_25,HouseSystem,Infrastructure,MailingList,PublicDisclosure,TestSchedule,Uniform} from './Links/Information';
 import {ApplyOnline,FeeStructure,Procedure} from './Links/Admissions';
 import {MediaAndNews,RecentActivities,Videos} from './Links/Gallery'
+import { Link } from "react-router-dom";
 import { MyContext, MyProvider } from "../context/MyContext";
 import HomeSection from "../sections/Homesection";
 
@@ -56,7 +57,7 @@ function Navbar (){
                 <div className="col">
                     <div className="row jc-space-between">
                         <div className="col">
-                            <Home newValue={newValue}/>
+                            <Link to ="/"><Home newValue={newValue}/></Link>
                         </div>
                         <div className="col">
                             <div className="hamburger">

@@ -1,6 +1,7 @@
 import './Dropdown.css';
 import React, { useEffect, useRef, createContext, useContext } from 'react';
 import { MyContext } from '../context/MyContext';
+import { Link } from 'react-router-dom';
 
 export default function Dropdown({menu,handleClick,components}){
     
@@ -30,11 +31,12 @@ export default function Dropdown({menu,handleClick,components}){
     },[]);*/
 
     const dropdownItems = menu.map((item,index)=>{
-        return <div key={index} className="dropdownitem" onClick={(e)=>
-        {e.stopPropagation();
-        itemClicked(item)}}>
+        return <Link to={item} style={{textDecoration:"none",color:"black"}} onClick={(e)=>
+            {e.stopPropagation();
+            itemClicked(item)}}><div key={index} className="dropdownitem" >
                     {item}
-                </div>
+                    </div>
+                </Link>
     })
     return(
         <div className="dropdown" ref={dropdownRef}>

@@ -1,3 +1,3 @@
-export const MediaAndNews = () => { /* component code */ };
-export const RecentActivities = () => { /* component code */ };
-export const Videos = () => { /* component code */ };
+export const MediaAndNews = () => { return <div>Mailing List</div> };
+export const RecentActivities = () => { return <div>Mailing List</div> };
+export const Videos = () => { return <div>Mailing List</div> };
