@@ -3,10 +3,9 @@ import HomeSection from "../sections/Homesection";
 
 export const MyContext = createContext();
 export const MyProvider = ({children})=>{
-    const [mainSection, setMainSection] = useState(<HomeSection/>);
+    const [mainSection, setMainSection] = useState('');
     const newValue = (newValue)=>{
         setMainSection(newValue);
-        
     }
     useEffect(() => {
         console.log(mainSection);
