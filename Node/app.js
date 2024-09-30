@@ -1,34 +1,32 @@
-// const express = require('express');
-// const morgan = require('morgan');
-// const mongoose = require('mongoose');
-// const app = express();
-
-//     // const dburi = 'mongodb+srv://adilshahid93:adil%401993@firstmongo.asbuc.mongodb.net/?retryWrites=true&w=majority&appName=FirstMongo';
-//     // mongoose.connect(dburi, { useNewUrlParser: true, useUnifiedTopology: true })
-//     // .then((result)=> console.log('connected to db'))
-//     // .catch((err)=>console.log(err));
-
-
-// app.listen(8383,()=>{
-//     console.log("listening on port 8383")
-// });
-
 const http = require('http');
-const { chunk } = require('lodash');
-    let body = '';
-const server = http.createServer((req,res)=>{
-    req.on('data',chunk=>{
-        body += chunk.toString();
-        
-    })
-    req.on('end',()=>{
-        
-        console.log(body);
-        
-    })
+
+const server = http.createServer((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // Allow requests from your React app
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Allow specific HTTP methods
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    // Only handle POST requests
     
+    if (req.method === 'POST') {
+        let body = '';
+
+        // Listen for data chunks
+        req.on('data', (chunk) => {
+            body += chunk.toString(); // Convert Buffer to string
+        });
+
+        // When all data has been received
+        req.on('end', () => {
+            console.log('Received body:', body);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Data received successfully', receivedData: JSON.parse(body) }));
+        });
+    } else {
+        // Handle other request types
+        res.writeHead(405, { 'Content-Type': 'text/plain' });
+        res.end('Method Not Allowed');
+    }
 });
 
-server.listen(8383,'localhost',()=>{
-    console.log("listening on 8383")
-})
+server.listen(8383, 'localhost', () => {
+    console.log("Listening on port 8383");
+});

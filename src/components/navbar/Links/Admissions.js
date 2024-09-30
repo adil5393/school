@@ -1,67 +1,58 @@
 import React, { useState } from 'react';
+import Formcomp from './Formcomp';
 
 export const ApplyOnline = () => { return <div>Aply Online</div> };
 export const FeeStructure = () => { 
     const [formData, setFormData] = useState({
-        name: { value: '', text: 'Name' },
-        class: { value: '', text: 'Class' },
-        phone: { value: '', text: 'Phone' },
-        email: { value: '', text: 'Email' },
-        conveyance: { value: '', text: 'Conveyance? (yes/no)' },
-        address: { value: '', text: 'Address/Pincode' }
+        name: { value: '', text: 'Name',type:"text" },
+        class: { value: '', text: 'Class',type:"text" },
+        phone: { value: '', text: 'Phone',type:"text" },
+        email: { value: '', text: 'Email',type:"text" },
+        conveyance: { value: '', text: 'Conveyance? (yes/no)',type:"text" },
+        address: { value: '', text: 'Address/Pincode',type:"text"}
     });
-    function handleChange(e){
-        const {name, value} = e.target;
-        setFormData((prevData)=>({
-            ...prevData,[name]:{...prevData[name],value}
-        }))
-    }
-    const formItem = Object.keys(formData).map((key)=>{
-        return(
-            <div className="form card jc-center pr-2 pl-2" style={{flexDirection:"row"}}>
-                <label htmlFor={formData[key].text}>{formData[key].text}</label>
-                <input type="text" className='inputText' name={key} value={formData[key].value} onChange={(e)=>handleChange(e)}/>
-            </div>
-        )
-    })
+    const cardTitle = "Apply to get Fee Structure"
+    const cardPara = "Fee Structure will be sent to your email."
+    const cardButton = "Submit"
     function handleSubmit(e){
         e.preventDefault();
-        fetch('http://localhost:8383/submit-form',{
-            method:'POST',
-            body: JSON.stringify(formData)
-        })
-        //console.log(formData)
-        const resetFormData = Object.fromEntries(
+        const dataToSend = Object.fromEntries(
             Object.keys(formData).map((key) => [
                 key, 
-                { ...formData[key], value: '' } // Reset value to an empty string
+                formData[key].value // Just send the value
             ])
         );
-
-        setFormData(resetFormData)
+        
+        fetch('http://localhost:8383',{
+            method:'POST',
+            
+            body:JSON.stringify(dataToSend)
+        }).then(response=>{
+            if(!response.ok){
+                throw new Error('Not posted')
+            }
+            return response.json();
+        }).then(data=>{
+            console.log('Success',data);
+            const resetFormData = Object.fromEntries(
+                Object.keys(formData).map((key) => [
+                    key, 
+                    { ...formData[key], value: '' } // Reset value to an empty string
+                ])
+            );
+    
+            setFormData(resetFormData)
+            
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        
     }
     return(
-        <form action="">
-            <div className="card">
-                <div className="row mt-2">
-                    <div className="col-xs-12 jc-center mt-2 mb-2" style={{flexDirection:"column"}}>
-                        <div className="card-title">
-                            Apply to get the fee structure
-                        </div>
-                        <p>Fee Structure will be sent to your Email</p>
-                        {formItem}
-                    <div className="card jc-flex-end" style={{width:"100%"}}>
-                        <button className="submit-btn" onClick={(e)=>handleSubmit(e)}>
-                            Submit
-                        </button>
-                    </div>
-                    
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </form>
+        <Formcomp formData={formData} setFormData={setFormData} cardTitle={cardTitle} cardPara={cardPara} cardButton={cardButton} buttonFn={handleSubmit} />
     )
 };
+
+
 export const Procedure = () => {  return <div>Procedure</div>};
