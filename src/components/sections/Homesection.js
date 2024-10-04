@@ -7,6 +7,10 @@ import whatsapp from '../../images/socials/whatsapp.png'
  // Assuming your styles are in this file
 
 const HomeSection = () => {
+    function rForHome(){
+        return require.context(`../../images/homeslide`, false, /\.(png|jpe?g|svg)$/)
+    }
+    const r = rForHome()
   return (
     <div className="row mb-2">
         <div className="col-xs-12">
@@ -75,7 +79,7 @@ const HomeSection = () => {
         </div>
         <div className="col-xs-12">
             <div className="card">
-                <Photogallery />
+                <Photogallery photos={r}/>
             </div>
         </div>
         <div className="col-xs-12">
@@ -109,7 +113,7 @@ const HomeSection = () => {
                         Social
                     </h3>
                 </div>
-                <div class="socials">
+                <div className="socials">
                     <a href="#"><img src={instagram} alt="" /></a>
                     <a href="1"><img src={youtube} alt="" /></a>
                     <a href="2"><img src={facebook} alt="" /></a>

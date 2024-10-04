@@ -80,6 +80,12 @@
         @include sm{
             height:500px
         }
+        @include md{
+            height:600px;
+        }
+        @include lg{
+            height:700px
+        }
     }
 }
 

@@ -2,8 +2,11 @@ import images from "../importimages"
 import React,{useState, useEffect} from 'react'
 
 
-export default function Photogallery(){
-    const imageKeys = Object.keys(images);
+
+export default function Photogallery({photos}){
+    
+    const imageSet = images(photos);
+    const imageKeys = Object.keys(imageSet);
     const [currentIndex,setCurrentIndex] = useState(0);
     
     useEffect(()=>{
@@ -17,8 +20,8 @@ export default function Photogallery(){
     
 
     return(
-        <div className="imagearea slide">
-            <img src={images[imageKeys[currentIndex]]} alt="" className="photo slide"/>
-        </div>
+         <div className="imagearea slide">
+             <img src={imageSet[imageKeys[currentIndex]]} alt="" className="photo slide"/>
+         </div>
     )    
 }

@@ -5,8 +5,9 @@ function importAll(r) {
     });
     return images;
   }
-  
-const images = importAll(require.context('../images/slide', false, /\.(png|jpe?g|svg)$/));
+
+
+const images =(r)=> importAll(r);
   
 export default images;
   
