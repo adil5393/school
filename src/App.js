@@ -33,7 +33,7 @@ function App() {
         <BrowserRouter>
           <MyProvider>
             <Header/>        
-            <Navbar/>
+            <Navbar class="mainNav"/>
               <Routes>
                 {Object.keys(components).map(key=>(
                   <Route path={`/${key}`} element={components[key]}></Route>

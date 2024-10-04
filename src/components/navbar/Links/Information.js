@@ -55,7 +55,50 @@ export const Infrastructure = () => {
 export const MailingList = () => { return <div>Mailing List</div> };
 export const PublicDisclosure = () => { return <div>Puublic Disclosure</div> };
 export const TestSchedule = () => { return <div>Test Schedule</div> };
-export const Uniform = () => { return <div>Mailing List</div> };
+export const Uniform = () => {
+    const r1 = require.context('../../../images/Uniforms/1',false,/\.(png|jpe?g|svg)$/);
+    const r2 = require.context('../../../images/Uniforms/2',false,/\.(png|jpe?g|svg)$/);
+    const r3 = require.context('../../../images/Uniforms/3',false,/\.(png|jpe?g|svg)$/);
+    const r4 = require.context('../../../images/Uniforms/4',false,/\.(png|jpe?g|svg)$/);
+    const paths = [
+        {heading:"Uniform Details",para:"",folder:r1},
+        {heading:"Weekday Uniform for Primary Section",para:"",folder:r2},
+        {heading:"Weekday Uniform for Junior Section",para:"",folder:r3},
+        {heading:"Weekend Uniform",para:"",folder:r4},
+    ] 
+    const comp = paths.map(item=>{
+        return(
+            <> 
+                <PageComposition title={item.heading} para={item.para}>
+                    <Photogallery photos={item.folder}/>
+                </PageComposition>
+            </>
+        )
+       })
+    
+    return(
+        <>
+            {comp}
+            <div className="card">
+                <p>
+                    After the admission procedure, the Student will be allotted a house (Check House System For details), namely-
+                </p>
+                <ul className=" card " style={{backgroundColor:"#e0f7fa" }}>
+                    <p><li style={{color:"red"}}>Achievers(Red)</li>
+                    <li style={{color:"blue"}}>Believers(Blue)</li>
+                    <li style={{color:"green"}}>Conquerers(Green)</li>
+                    <li style={{color:"#FFDB58"}}>Challengers(Yellow)</li></p>
+                </ul>
+                <p>The student should get their uniform for weekends according to their allotted house</p>
+            </div>
+            <div className="card">
+                <div className="card-title">
+                    <h3>Contact</h3>
+                </div>
+            </div>
+        </>
+    )
+};
 
 function PageComposition({children,para,title}){
     return(

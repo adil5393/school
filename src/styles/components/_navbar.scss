@@ -8,3 +8,6 @@
 .nav{
     @include basenav;
 }
+.mainNav{
+    position: relative fixed;
+}

@@ -52,7 +52,7 @@ function Navbar (){
         console.log(newMenu)*/
     }
     return(
-        <div className="card">
+        <div className="card mainNav">
             <div className="row" style={{flexDirection:'column'}}>
                 <div className="col">
                     <div className="row jc-space-between">
