@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Formcomp from './Formcomp';
-
+import doneimg from './doneimg.png'
+import loading from './loadingimg.png'
+import { isDisabled } from '@testing-library/user-event/dist/utils';
+function ButtonAnimation({posted}){
+    return(
+        <div className='submit-animation'>
+            {posted && <img src={doneimg} alt='notfound' className="post-done"/>}
+            {!posted &&<img src={loading} alt='notfound' className={`submit-icon ${isDisabled? 'rotating':''}`}/>}
+        </div>
+    )
+}
 export const ApplyOnline = () => { return <div>Aply Online</div> };
 export const FeeStructure = () => { 
+    
+    
     const [formData, setFormData] = useState({
         name: { value: '', text: 'Name',type:"text" },
         class: { value: '', text: 'Class',type:"text" },
@@ -13,8 +25,21 @@ export const FeeStructure = () => {
     });
     const cardTitle = "Apply to get Fee Structure"
     const cardPara = "Fee Structure will be sent to your email."
-    const cardButton = "Submit"
+    const [cardButton,setCardButton] = useState("Submit")
+    const [isDisabled,setIsDisabled] = useState(false)
+    const [posted,setPosted] =useState(false);
+    
+    useEffect(() => {
+        if (isDisabled) {
+            setCardButton(<ButtonAnimation posted={posted}/>);
+        } else {
+            setCardButton("Submit");
+        }
+    }, [isDisabled,posted]);
+
+
     function handleSubmit(e){
+        setIsDisabled(true)
         e.preventDefault();
         const dataToSend = Object.fromEntries(
             Object.keys(formData).map((key) => [
@@ -25,15 +50,23 @@ export const FeeStructure = () => {
         
         fetch('http://localhost:8383',{
             method:'POST',
-            
+            headers:{
+                'Content-Type':'application/json'
+            },
             body:JSON.stringify(dataToSend)
         }).then(response=>{
+            
             if(!response.ok){
                 throw new Error('Not posted')
             }
+            else{
+                if(response.status===200){
+                    setPosted(true);
+                }
+            }
             return response.json();
         }).then(data=>{
-            console.log('Success',data);
+            
             const resetFormData = Object.fromEntries(
                 Object.keys(formData).map((key) => [
                     key, 
@@ -50,7 +83,7 @@ export const FeeStructure = () => {
         
     }
     return(
-        <Formcomp formData={formData} setFormData={setFormData} cardTitle={cardTitle} cardPara={cardPara} cardButton={cardButton} buttonFn={handleSubmit} />
+        <Formcomp formData={formData} setFormData={setFormData} cardTitle={cardTitle} cardPara={cardPara} cardButton={cardButton} buttonFn={handleSubmit} isDisabled={isDisabled} posted={posted}/>
     )
 };
 

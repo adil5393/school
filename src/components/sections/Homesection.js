@@ -114,9 +114,9 @@ const HomeSection = () => {
                     </h3>
                 </div>
                 <div className="socials">
-                    <a href="#"><img src={instagram} alt="" /></a>
-                    <a href="1"><img src={youtube} alt="" /></a>
-                    <a href="2"><img src={facebook} alt="" /></a>
+                    <a href="https://www.instagram.com/angels230001" target="_blank"><img src={instagram} alt="" /></a>
+                    <a href="https://www.youtube.com/@newangelsseniorsecondarysc716" target="_blank"><img src={youtube} alt="" /></a>
+                    <a href="https://www.facebook.com/angels.pbh72/" target="_blank"><img src={facebook} alt="" /></a>
                 </div>
             </div>
         </div>

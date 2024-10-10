@@ -24,6 +24,54 @@
   background-color: black;
   color: white;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+@media (min-width: 0) {
+  .submit-btn {
+    width: 70px;
+  }
+}
+
+.submit-animation {
+  display: flex; /* Center the image */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Take the full width of the button */
+  height: 100%; /* Take the full height of the button */
+}
+
+.submit-btn.posted {
+  cursor: default;
+}
+
+.submit-icon {
+  max-width: 80%; /* Limit the image width */
+  max-height: 80%; /* Limit the image height */
+  object-fit: contain; /* Maintain aspect ratio */
+  transition: transform 2s;
+}
+
+.post-done {
+  max-width: 80%; /* Limit the image width */
+  max-height: 80%; /* Limit the image height */
+  object-fit: contain; /* Maintain aspect ratio */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  animation: rotate 1s linear infinite;
 }
 
 .nav-btn {
@@ -45,6 +93,42 @@
 }
 
 .menu-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 5px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  height: 25px;
+  width: auto;
+  padding: 5px 5px;
+  margin: 2px;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.docs-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 5px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  height: 25px;
+  width: auto;
+  padding: 5px 5px;
+  margin: 2px;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.mail-btn {
   width: 100%;
   padding: 0.75rem;
   border-radius: 5px;
@@ -2072,7 +2156,7 @@ form textarea {
 }
 .card .card-title {
   font-weight: 900;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Lato";
   text-decoration: underline;
   text-align: center;
 }
@@ -2105,8 +2189,8 @@ form textarea {
   padding: 10px;
 }
 .card p {
-  font-family: "Courier New", Courier, monospace;
-  text-decoration: underline;
+  font-family: "Lato";
+  text-decoration: none;
   text-align: center;
 }
 @media (min-width: 0) {

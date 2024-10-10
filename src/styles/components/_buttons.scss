@@ -13,13 +13,63 @@
 }
 .submit-btn{
    @include base-btn;
+   @include xs{
+      width: 70px;
+   }
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   border: none;   
+   color: white;   
+   cursor: pointer; 
 }
+.submit-animation {
+   display: flex; /* Center the image */
+   justify-content: center;
+   align-items: center;
+   width: 100%; /* Take the full width of the button */
+   height: 100%; /* Take the full height of the button */
+}
+.submit-btn.posted{
+   cursor: default;
+}
+
+.submit-icon {
+   max-width: 80%; /* Limit the image width */
+   max-height: 80%; /* Limit the image height */
+   object-fit: contain; /* Maintain aspect ratio */
+   transition: transform 2s ;
+}
+.post-done{
+   max-width: 80%; /* Limit the image width */
+   max-height: 80%; /* Limit the image height */
+   object-fit: contain; /* Maintain aspect ratio */
+}
+@keyframes rotate{
+   from{
+      transform: rotate(0deg);
+   }
+   to{
+      transform: rotate(360deg)
+   }
+}
+.rotating{
+   animation: rotate 1s linear infinite;
+}
+
 .nav-btn{
     @include base-btn;
 }
 .menu-btn{
     @include base-btn;
  }
+ .docs-btn{
+   @include base-btn;
+   
+}
+.mail-btn{
+   @include base-btn;
+}
  .applynow{
    @include base-btn;
    width:100px;
@@ -79,3 +129,4 @@
    outline:none;
    -webkit-tap-highlight-color: transparent;
  }
+

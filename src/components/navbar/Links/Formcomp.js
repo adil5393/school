@@ -1,7 +1,8 @@
 export default function Formcomp(props){
-    const {formData,setFormData,cardTitle,cardPara,cardButton,buttonFn} = props;
+    const {formData,setFormData,cardTitle,cardPara,cardButton,buttonFn,isDisabled,posted} = props;
     
     function handleChange(e){
+        
         const {name, value} = e.target;
         setFormData((prevData)=>({
             ...prevData,[name]:{...prevData[name],value}
@@ -26,7 +27,7 @@ export default function Formcomp(props){
                         <p>{cardPara}</p>
                         {formItems}
                     <div className="card jc-flex-end" style={{width:"100%"}}>
-                        <button className="submit-btn" onClick={(e)=>buttonFn(e)}>
+                        <button className={`submit-btn ${posted?'posted':''}`} disabled={isDisabled} onClick={(e)=>buttonFn(e)}>
                             {cardButton}
                         </button>
                     </div>

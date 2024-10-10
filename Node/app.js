@@ -6,9 +6,13 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     // Only handle POST requests
     
+    if (req.method === 'OPTIONS') {
+        res.writeHead(204); // No content
+        res.end();
+        return;
+    }
     if (req.method === 'POST') {
         let body = '';
-
         // Listen for data chunks
         req.on('data', (chunk) => {
             body += chunk.toString(); // Convert Buffer to string
@@ -16,9 +20,12 @@ const server = http.createServer((req, res) => {
 
         // When all data has been received
         req.on('end', () => {
+            
             console.log('Received body:', body);
+           setTimeout(()=>{
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Data received successfully', receivedData: JSON.parse(body) }));
+           },2000)
         });
     } else {
         // Handle other request types

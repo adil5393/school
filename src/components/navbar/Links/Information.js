@@ -1,5 +1,5 @@
 import Photogallery from "../../photogallery/Photogallery";
-
+import React, { useEffect, useState } from 'react';
 
 export const BookList2024_25 = () => { return <div>BookList 2024-25</div> };
 
@@ -52,8 +52,92 @@ export const Infrastructure = () => {
         </>
     )
 }
-export const MailingList = () => { return <div>Mailing List</div> };
-export const PublicDisclosure = () => { return <div>Puublic Disclosure</div> };
+export const MailingList = () => { 
+    const mailingList =[
+        {heading:"For General Information",para:"For general information like Admission, Fee,  Appointments, Timing and Schedule, Use this mail address.",mail:"inquiry230001@newangels.in",subject:"Inquiry"},
+        {heading:"Resolve an Issue",para:"If you'd like to talk about an issue you have faced or are facing with our organization mail us at ",mail:"complaints230001@newangels.in ",subject:"Complaint"},
+        {heading:"Applications",para:"Applications for Admissions, Job Applications(Resume, CV), Leave Applications, Medical Documents of Student etc. can be sent to this mail.",mail:"applications230001@newangels.in ",subject:"Submit an application"}
+    ]
+    const openEmail = (to, subject, body) => {
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+        console.log(to,subject)
+        if (isMobile) {
+          // Use mailto for mobile
+          window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        } else {
+          // Use Gmail link for desktop
+          window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank', 'noopener,noreferrer');
+        }
+      }
+    return(
+        <div className="row jc-center mt-3" style={{flexDirection:"column"}}>
+            {mailingList.map(obj=>{
+                return(
+                        <div className="col-xs-12 col-sm-6" style={{backgroundColor:"",width:"100%"}}>
+                            <div className="card pt-2 pb-4" style={{width:"80%"}}>
+                            <div className="card-title">
+                                <h3>{obj.heading}</h3>
+                            </div>
+                            <p>
+                                {obj.para}
+                            </p>
+                            <button 
+                                className="mail-btn" 
+                                onClick={() => openEmail(obj.mail, obj.subject, obj.body)}
+                                style={{paddingTop:4}}>
+                                {obj.mail}
+                            </button>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    )
+};
+export const PublicDisclosure = () => { 
+    const [pdfs, setPdfs] = useState([]);
+
+    useEffect(() => {
+        const importAll = (r) => {
+        let files = [];
+        r.keys().forEach((item) => {
+            files.push({ name: item.replace('./', ''), path: r(item) });
+        });
+        return files;
+    };
+
+    const pdfs = importAll(require.context('../../../Docs', false, /\.pdf$/));
+    setPdfs(pdfs);
+  }, []);
+  const openPDF = (pdfPath) => {
+    window.open(pdfPath, '_blank', 'noopener,noreferrer');
+  };
+    return(
+        <>
+            <div className="row jc-center" style={{flexDirection:"row"}}>
+                <div className="col-xs-12">
+                    <div className="card">
+                        <div className="card-title">
+                            <h2>Public Disclosure</h2>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {pdfs.map((pdf) => (
+                <div className="row jc-center pt-5">
+                <div className="col-xs-12 col-sm-6"style={{width:"70%"}}>
+                    <div key={pdf.name} className="card" style={{height:"auto",alignItems:"center",paddingTop:"20px"}}>
+                                <button className="docs-btn" style={{width:"100%"}} onClick={() => openPDF(pdf.path)}>View Document</button>                    
+                            <p>{pdf.name}</p>
+                        </div>
+                    </div>
+                </div>
+                
+        ))}
+        </>
+            
+    )
+};
 export const TestSchedule = () => { return <div>Test Schedule</div> };
 export const Uniform = () => {
     const r1 = require.context('../../../images/Uniforms/1',false,/\.(png|jpe?g|svg)$/);
