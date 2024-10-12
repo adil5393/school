@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Formcomp from './Formcomp';
+import error from './error.png'
 import doneimg from './doneimg.png'
 import loading from './loadingimg.png'
 import { isDisabled } from '@testing-library/user-event/dist/utils';
-function ButtonAnimation({posted}){
+function ButtonAnimation({posted,posting}){
     return(
         <div className='submit-animation'>
             {posted && <img src={doneimg} alt='notfound' className="post-done"/>}
-            {!posted &&<img src={loading} alt='notfound' className={`submit-icon ${isDisabled? 'rotating':''}`}/>}
+            {(!posted && posting)  &&<img src={loading} alt='notfound' className={`submit-icon ${isDisabled? 'rotating':''}`}/>}
+            {(!posted && !posting) && <img src={error} alt="not fount" className='submit-icon error'/>}
         </div>
     )
 }
@@ -28,17 +30,16 @@ export const FeeStructure = () => {
     const [cardButton,setCardButton] = useState("Submit")
     const [isDisabled,setIsDisabled] = useState(false)
     const [posted,setPosted] =useState(false);
+    const [posting,setPosting] = useState(false);
     
     useEffect(() => {
         if (isDisabled) {
-            setCardButton(<ButtonAnimation posted={posted}/>);
-        } else {
-            setCardButton("Submit");
-        }
-    }, [isDisabled,posted]);
-
+            setCardButton(<ButtonAnimation posted={posted} posting={posting}/>);
+        } 
+    }, [isDisabled,posted,posting]);
 
     function handleSubmit(e){
+        setPosting(true);
         setIsDisabled(true)
         e.preventDefault();
         const dataToSend = Object.fromEntries(
@@ -47,16 +48,21 @@ export const FeeStructure = () => {
                 formData[key].value // Just send the value
             ])
         );
+        const controller = new AbortController();
+        const timeoutId =setTimeout(()=>{
+            controller.abort()
+        },5000);
         
-        fetch('http://localhost:8383',{
+        fetch('http://192.168.1.4:8383/feeStructure',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify(dataToSend)
-        }).then(response=>{
-            
-            if(!response.ok){
+            body:JSON.stringify(dataToSend),
+            signal:controller.signal
+        }).then(response=>{  
+            clearTimeout(timeoutId);          
+            if(!response.ok){                
                 throw new Error('Not posted')
             }
             else{
@@ -72,12 +78,13 @@ export const FeeStructure = () => {
                     key, 
                     { ...formData[key], value: '' } // Reset value to an empty string
                 ])
-            );
-    
+            );    
             setFormData(resetFormData)
-            
+            setPosting(false)      
         })
         .catch(err=>{
+            clearTimeout(timeoutId)
+            setPosting(false);
             console.log(err)
         })
         
