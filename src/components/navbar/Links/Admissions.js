@@ -13,17 +13,10 @@ function ButtonAnimation({posted,posting}){
         </div>
     )
 }
-<<<<<<< HEAD
-export const ApplyOnline = () => { return <div>Aply Online</div> };
-=======
-export const ApplyOnline = () => { return(
-    <div>
-        {console.log("Version 2")}
-    </div>
+export const ApplyOnline = () => { return (
+    <div>Aply Online</div>
 ) };
->>>>>>> latestupdate
 export const FeeStructure = () => { 
-    
     
     const [formData, setFormData] = useState({
         name: { value: '', text: 'Name',type:"text" },
