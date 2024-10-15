@@ -13,7 +13,15 @@ function ButtonAnimation({posted,posting}){
         </div>
     )
 }
+<<<<<<< HEAD
 export const ApplyOnline = () => { return <div>Aply Online</div> };
+=======
+export const ApplyOnline = () => { return(
+    <div>
+        {console.log("Version 2")}
+    </div>
+) };
+>>>>>>> latestupdate
 export const FeeStructure = () => { 
     
     
