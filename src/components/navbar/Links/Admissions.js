@@ -53,7 +53,7 @@ export const FeeStructure = () => {
             controller.abort()
         },5000);
         
-        fetch('http://192.168.1.4:8383/feeStructure',{
+        fetch('http://localhost:8383/feeStructure',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

@@ -35,7 +35,7 @@ let transporter = nodemailer.createTransport({
 
 
 const server = http.createServer((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.4:3000'); // Allow requests from your React app
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // Allow requests from your React app
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Allow specific HTTP methods
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     // Only handle POST requests
@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
         return;
     }
     if(req.method==="GET"){
-        console.log("req")
+        console.log(req.url)
     }
     if (req.method === 'POST') {        
         console.log(req.url)
@@ -70,6 +70,7 @@ const server = http.createServer((req, res) => {
                     setDoc("#annualAmount").text(feeToSend.annFee)
                     setDoc("#tuitionAmount").text(feeToSend.tuFee)
                     setDoc("#examAmount").text(feeToSend.exmFee)
+                    setDoc(".classname").text(classKey)
                     const newDoc = setDoc.html();
                     
                     let mailOptions = {
@@ -102,6 +103,6 @@ const server = http.createServer((req, res) => {
     }
 });
 
-server.listen(8383, '192.168.1.4', () => {
+server.listen(8383, 'localhost', () => {
     console.log("Listening on port 8383");
 });
